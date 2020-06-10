@@ -61,8 +61,8 @@ bintray {
         licenses = ['Apache-2.0']
         vcsUrl = "https://github.com/liusbl/List-Binders"
         version {
-            name = "0.3"
-            vcsTag = "0.3"
+            name = getVersionName()
+            vcsTag = getVersionName()
             released = new Date()
         }
     }
