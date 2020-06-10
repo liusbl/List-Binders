@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'maven-publish'
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -22,41 +20,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-def githubProperties = new Properties()
-githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
-
-
-def getVersionName = { ->
-    return "0.1"
-}
-
-def getArtificatId = { ->
-    return "list-binders"
-}
-
-publishing {
-    publications {
-        bar(MavenPublication) {
-            groupId 'com.liusbl.libraries'
-            artifactId getArtificatId()
-            version getVersionName()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/liusbl/List-Binders")
-
-            credentials {
-                username = System.getenv("GPR_USER") ?: githubProperties['gpr.usr']
-                password = System.getenv("GPR_API_KEY") ?: githubProperties['gpr.key']
-            }
         }
     }
 }
