@@ -43,3 +43,5 @@ output.json
 app/temp/
 
 .idea/
+
+github.properties
