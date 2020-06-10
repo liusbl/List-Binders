@@ -28,7 +28,7 @@ android {
 }
 
 def getVersionName = { ->
-    return "0.3"
+    return "0.1"
 }
 
 def getArtificatId = { ->
@@ -59,7 +59,7 @@ bintray {
         name = "com.liusbl.libraries:listbinders"
         desc = "some description"
         licenses = ['Apache-2.0']
-//        vcsUrl = libVCSUrl TODO
+        vcsUrl = "https://github.com/liusbl/List-Binders"
         version {
             name = "0.3"
             vcsTag = "0.3"
