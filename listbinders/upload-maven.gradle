@@ -1,0 +1,41 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = "com.liusbl.libraries"                               // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId "com.liusbl.libraries"
+                artifactId "listbinders"
+
+                // Add your description here
+                name "listbinders"
+                description "libraryDescription"
+                url "https://github.com/liusbl/List-Binders"
+
+                // Set your license
+                licenses {
+                    license {
+                        name "The Apache Software License, Version 2.0"
+                        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+//                developers {
+//                    developer {
+//                        id developerId
+//                        name developerName
+//                        email developerEmail
+//                    }
+//                }
+                scm {
+                    url 'https://github.com/liusbl/List-Binders'
+                    connection 'https://github.com/liusbl/List-Binders.git'
+                    developerConnection 'https://github.com/liusbl/List-Binders.git'
+                }
+            }
+        }
+    }
+}

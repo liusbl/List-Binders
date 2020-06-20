@@ -1,0 +1,55 @@
+//apply plugin: 'maven'
+//apply plugin: 'signing'
+//
+//group = "com.liusbl.libraries"
+//
+//configurations.archives {
+//    extendsFrom configurations.default
+//}
+//
+//uploadArchives {
+//    configuration = configurations.archives
+//    repositories.mavenDeployer {
+//
+//        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//        repository(url: sonatypeRepo) {
+//            authentication(userName: sonatypeUsername,
+//                    password: sonatypePassword)
+//        }
+//
+//        pom.project {
+//            name 'CircleIndicator'
+//            packaging 'aar'
+//            description 'A RecyclerView wrapper providing an easy solution for complicated lists'
+//            url 'https://github.com/ongakuer/CircleIndicator'
+//
+//            licenses {
+//                license {
+//                    name 'The Apache Software License, Version 2.0'
+//                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                    distribution 'repo'
+//                }
+//            }
+//
+////            developers {
+////                developer {
+////                    id 'liusbl'
+////                    name 'liusbl'
+////                    email 'some@somemail.com'
+////                }
+////            }
+//
+//            scm {
+//                url 'https://github.com/liusbl/List-Binders'
+//                connection 'https://github.com/liusbl/List-Binders.git'
+//                developerConnection 'https://github.com/liusbl/List-Binders.git'
+//            }
+//        }
+//    }
+//}
+//
+//signing {
+//    required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+//    sign configurations.archives
+//}

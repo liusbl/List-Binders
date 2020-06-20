@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
+def libVersion = "0.2"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -13,7 +15,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName libVersion
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -27,66 +29,44 @@ android {
     }
 }
 
-def getVersionName = { ->
-    return "0.1"
-}
-
-def getArtificatId = { ->
-    return "listbinders"
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId 'com.liusbl.libraries'
-            version getVersionName()
-            artifactId getArtificatId()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
-        }
-    }
-}
-
-// Bintray config
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    publications = ['maven']
-    pkg {
-        repo = "list-binders"
-        name = "com.liusbl.libraries:listbinders"
-        desc = "some description"
-        licenses = ['Apache-2.0']
-        vcsUrl = "https://github.com/liusbl/List-Binders"
-        version {
-            name = getVersionName()
-            vcsTag = getVersionName()
-            released = new Date()
-        }
-    }
-}
-
+//
+//def getVersionName = { ->
+//    return "0.1"
+//}
+//
+//def getArtificatId = { ->
+//    return "listbinders"
+//}
+//
 //publishing {
 //    publications {
-//        bar(MavenPublication) {
+//        maven(MavenPublication) {
 //            groupId 'com.liusbl.libraries'
-//            artifactId getArtificatId()
 //            version getVersionName()
+//            artifactId getArtificatId()
 //            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
 //        }
 //    }
+//}
 //
-//    repositories {
-//        maven {
-//            name = "GitHubPackages"
-//            url = uri("https://maven.pkg.github.com/liusbl/List-Binders")
+//// Bintray config
+//Properties properties = new Properties()
+//properties.load(project.rootProject.file('local.properties').newDataInputStream())
 //
-//            credentials {
-//                username = System.getenv("GPR_USER") ?: githubProperties['gpr.usr']
-//                password = System.getenv("GPR_API_KEY") ?: githubProperties['gpr.key']
-//            }
+//bintray {
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+//    publications = ['maven']
+//    pkg {
+//        repo = "list-binders"
+//        name = "com.liusbl.libraries:listbinders"
+//        desc = "A RecyclerView wrapper providing an easy solution for complicated lists"
+//        licenses = ['Apache-2.0']
+//        vcsUrl = "https://github.com/liusbl/List-Binders"
+//        version {
+//            name = getVersionName()
+//            vcsTag = getVersionName()
+//            released = new Date()
 //        }
 //    }
 //}
@@ -101,3 +81,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }
+
+apply from: "upload-bintray.gradle"
+apply from: "upload-maven.gradle"
+
+
+//apply from: "upload-jcenter.gradle"
+//apply from: "upload-maven.gradle"
