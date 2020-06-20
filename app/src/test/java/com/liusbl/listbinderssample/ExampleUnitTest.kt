@@ -1,4 +1,4 @@
-package com.liusbl.listbinders
+package com.liusbl.listbinderssample
 
 import org.junit.Test
 

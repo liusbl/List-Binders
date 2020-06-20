@@ -1,4 +1,4 @@
-package com.liusbl.listbinders
+package com.liusbl.listbinderssample
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.liusbl.listbinders", appContext.packageName)
+        assertEquals("com.liusbl.listbinders.test", appContext.packageName)
     }
 }
