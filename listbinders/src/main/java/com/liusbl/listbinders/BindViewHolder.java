@@ -28,10 +28,15 @@ public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder
     }
 
     /**
-     * Called each time when viewHolder onBindViewHolder
-     *
-     * @param viewHolder The viewHolder for which to bind the item
-     * @param item       The current item being binded
+     * Passes Binder#onCreate call to adapterBinder
+     */
+    @Override
+    public void onCreate(BindViewHolder<T> viewHolder) {
+        adapterBinder.onCreate(viewHolder);
+    }
+
+    /**
+     * Passes Binder#onBind call to adapterBinder
      */
     @Override
     public void onBind(BindViewHolder<T> viewHolder, T item) {
