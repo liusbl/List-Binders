@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
  *
  * @param <T> the type of item being bound.
  */
-public class BinderViewHolder<T> extends RecyclerView.ViewHolder implements Binder<T> {
-    private final Binder<T> adapterBinder;
+public class BinderViewHolder<T> extends RecyclerView.ViewHolder implements ItemBinder<T> {
+    private final ItemBinder<T> adapterBinder;
     private T item;
 
     /**
@@ -21,7 +21,7 @@ public class BinderViewHolder<T> extends RecyclerView.ViewHolder implements Bind
      * @param itemView      the item view
      */
     public BinderViewHolder(
-            Binder<T> adapterBinder,
+            ItemBinder<T> adapterBinder,
             @NonNull View itemView
     ) {
         super(itemView);
