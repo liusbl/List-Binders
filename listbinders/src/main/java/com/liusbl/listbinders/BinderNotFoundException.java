@@ -11,6 +11,6 @@ class BinderNotFoundException extends RuntimeException {
             int viewType,
             List<LayoutBinder> binderList
     ) {
-        super("Binder not found"); // TODO add
+        super("Binder not found"); // TODO add information about viewType and binderList
     }
 }
