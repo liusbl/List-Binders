@@ -15,7 +15,7 @@ import java.util.List;
  * Provides simplified way to implement list with multiple view types
  */
 @SuppressWarnings("rawtypes")
-abstract class MultiViewTypeAdapter<T extends ListItem>
+public abstract class MultiViewTypeAdapter<T extends ListItem>
         extends ListAdapter<T, BinderViewHolder<T>>
         implements ItemBinder<T> {
     private final List<LayoutBinder> binderList;

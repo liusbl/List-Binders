@@ -3,7 +3,7 @@ package com.liusbl.listbinders;
 /**
  * All list items used in MultiViewTypeAdapter and SingleViewTypeAdapter must extend ListItem.
  */
-class ListItem {
+public class ListItem {
     private int stableId;
     private Enum viewType;
 

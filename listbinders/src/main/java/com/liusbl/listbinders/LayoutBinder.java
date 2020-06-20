@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes;
  * LayoutBinder provides ItemBinder logic for a specific layout
  */
 @SuppressWarnings("rawtypes")
-abstract class LayoutBinder<T> implements ItemBinder<T> {
+public abstract class LayoutBinder<T> implements ItemBinder<T> {
     @LayoutRes
     private final int itemLayout;
     private final Enum viewType;

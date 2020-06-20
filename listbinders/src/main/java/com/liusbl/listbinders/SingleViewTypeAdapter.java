@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Provides simplified way to implement list with a single view type
  */
-abstract class SingleViewTypeAdapter<T extends ListItem>
+public abstract class SingleViewTypeAdapter<T extends ListItem>
         extends ListAdapter<T, BinderViewHolder<T>>
         implements ItemBinder<T> {
     @LayoutRes
