@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * Provides a proxy to RecyclerView.ViewHolder by implementing Binder.
  *
- * @param <T> the type parameter
+ * @param <T> the type of item being bound.
  */
 public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder<T> {
     private final Binder<T> adapterBinder;
+    private T item;
 
     /**
      * Instantiates a new Bind view holder.
@@ -28,7 +29,7 @@ public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder
     }
 
     /**
-     * Passes Binder#onCreate call to adapterBinder
+     * Passes Binder#onCreate call to adapterBinder.
      */
     @Override
     public void onCreate(BindViewHolder<T> viewHolder) {
@@ -36,10 +37,17 @@ public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder
     }
 
     /**
-     * Passes Binder#onBind call to adapterBinder
+     * Passes Binder#onBind call to adapterBinder.
      */
     @Override
     public void onBind(BindViewHolder<T> viewHolder, T item) {
         adapterBinder.onBind(viewHolder, item);
+    }
+
+    /**
+     * @return the current item bound to the viewHolder.
+     */
+    public T getItem() {
+        return item;
     }
 }
