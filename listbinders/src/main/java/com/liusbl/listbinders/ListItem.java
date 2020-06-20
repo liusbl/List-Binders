@@ -1,5 +1,8 @@
 package com.liusbl.listbinders;
 
+/**
+ * All single view type list items must extend this class to provide stable ids.
+ */
 public class ListItem {
     private int stableId;
 
