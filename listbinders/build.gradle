@@ -1,9 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
+apply plugin: 'org.jetbrains.dokka-android'
 
-def libVersion = "0.3"
+def libVersion = "0.4"
 
 android {
     compileSdkVersion 29
@@ -25,6 +27,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
 }
 
 //
@@ -76,10 +83,15 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: "upload-bintray.gradle"
 apply from: "upload-maven.gradle"
+repositories {
+    mavenCentral()
+}
 
 
 //apply from: "upload-jcenter.gradle"
