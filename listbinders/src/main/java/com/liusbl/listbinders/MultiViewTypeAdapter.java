@@ -4,35 +4,48 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * Provides simplified way to implement list with a single view type
+ * Provides simplified way to implement list with multiple view types
  */
-abstract class SingleViewTypeAdapter<T extends ListItem>
+@SuppressWarnings("rawtypes")
+abstract class MultiViewTypeAdapter<T extends ListItem>
         extends ListAdapter<T, BinderViewHolder<T>>
         implements ItemBinder<T> {
-    @LayoutRes
-    private final int itemLayout;
+    private final List<LayoutBinder> binderList;
 
-    protected SingleViewTypeAdapter(int itemLayout) {
+    protected MultiViewTypeAdapter(List<LayoutBinder> binderList) {
         super(new DefaultDiffUtilItemCallback<T>());
-        this.itemLayout = itemLayout;
+        this.binderList = binderList;
     }
 
     @NonNull
     @Override
     public BinderViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutBinder currentLayoutBinder = getLayoutBinder(viewType);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View itemView = inflater.inflate(itemLayout, parent, false);
+        View itemView = inflater.inflate(currentLayoutBinder.getItemLayout(), parent, false);
         BinderViewHolder<T> viewHolder = new BinderViewHolder<>(this, itemView);
         viewHolder.onCreate(viewHolder);
         return viewHolder;
+    }
+
+    private LayoutBinder getLayoutBinder(int viewType) {
+        LayoutBinder currentLayoutBinder = null;
+        for (LayoutBinder layoutBinder : binderList) {
+            if (layoutBinder.getViewType().ordinal() == viewType) {
+                currentLayoutBinder = layoutBinder;
+                break;
+            }
+        }
+        if (currentLayoutBinder == null) throw new BinderNotFoundException(viewType, binderList);
+        return currentLayoutBinder;
     }
 
     @Override
@@ -40,9 +53,21 @@ abstract class SingleViewTypeAdapter<T extends ListItem>
         viewHolder.onBind(viewHolder, getCurrentList().get(position));
     }
 
+    /**
+     * When using multiple viewTypes, getItemViewType must be implemented.
+     * Here we provide the Enum value.
+     */
+    @Override
+    public int getItemViewType(int position) {
+        return getCurrentList().get(position).getStableId();
+    }
+
+    /**
+     * Providing stableId values allows some viewHolder optimizations
+     */
     @Override
     public long getItemId(int position) {
-        return getCurrentList().get(position).getStableId();
+        return getCurrentList().get(position).getViewType().ordinal();
     }
 
     /**

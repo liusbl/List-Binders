@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import java.util.Objects;
 
+/**
+ * Provides a default implementation of DiffUtil.ItemCallback for usage in ListAdapter
+ */
 class DefaultDiffUtilItemCallback<T extends ListItem> extends DiffUtil.ItemCallback<T> {
     @Override
     public boolean areItemsTheSame(@NonNull T oldItem, @NonNull T newItem) {
