@@ -16,8 +16,7 @@ import java.util.List;
  */
 @SuppressWarnings("rawtypes")
 public abstract class MultiViewTypeAdapter<T extends SubListItem>
-        extends ListAdapter<T, BinderViewHolder<T>>
-        implements ItemBinder<T> {
+        extends ListAdapter<T, BinderViewHolder<T>> {
     private final List<LayoutBinder> binderList;
 
     protected MultiViewTypeAdapter(List<LayoutBinder> binderList) {
@@ -31,7 +30,7 @@ public abstract class MultiViewTypeAdapter<T extends SubListItem>
         LayoutBinder currentLayoutBinder = getLayoutBinder(viewType);
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(currentLayoutBinder.getItemLayout(), parent, false);
-        BinderViewHolder<T> viewHolder = new BinderViewHolder<>(this, itemView);
+        BinderViewHolder<T> viewHolder = new BinderViewHolder(currentLayoutBinder, itemView);
         viewHolder.onCreate(viewHolder);
         return viewHolder;
     }
@@ -59,7 +58,7 @@ public abstract class MultiViewTypeAdapter<T extends SubListItem>
      */
     @Override
     public int getItemViewType(int position) {
-        return getCurrentList().get(position).getStableId();
+        return getCurrentList().get(position).getViewType().ordinal();
     }
 
     /**

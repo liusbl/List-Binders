@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.liusbl.listbinderssample.multi.MultiActivity;
 import com.liusbl.listbinderssample.single.SingleActivity;
 
 public final class MainActivity extends AppCompatActivity {

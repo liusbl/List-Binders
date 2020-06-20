@@ -17,6 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.liusbl.listbinderssample.single.SingleActivity" />
-        <activity android:name="com.liusbl.listbinderssample.MultiActivity" />
+        <activity android:name="com.liusbl.listbinderssample.multi.MultiActivity" />
     </application>
 </manifest>
