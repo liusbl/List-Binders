@@ -9,7 +9,7 @@ public interface Binder<T> {
      *
      * @param viewHolder The viewHolder being created
      */
-    void onCreate(BindViewHolder<T> viewHolder);
+    void onCreate(BinderViewHolder<T> viewHolder);
 
     /**
      * Called each time when viewHolder onBindViewHolder
@@ -17,5 +17,5 @@ public interface Binder<T> {
      * @param viewHolder The viewHolder for which to bind the item
      * @param item       The current item being bound
      */
-    void onBind(BindViewHolder<T> viewHolder, T item);
+    void onBind(BinderViewHolder<T> viewHolder, T item);
 }

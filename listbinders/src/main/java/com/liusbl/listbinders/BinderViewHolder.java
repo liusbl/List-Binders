@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
  *
  * @param <T> the type of item being bound.
  */
-public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder<T> {
+public class BinderViewHolder<T> extends RecyclerView.ViewHolder implements Binder<T> {
     private final Binder<T> adapterBinder;
     private T item;
 
@@ -20,7 +20,7 @@ public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder
      * @param adapterBinder the adapter binder
      * @param itemView      the item view
      */
-    public BindViewHolder(
+    public BinderViewHolder(
             Binder<T> adapterBinder,
             @NonNull View itemView
     ) {
@@ -32,7 +32,7 @@ public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder
      * Passes Binder#onCreate call to adapterBinder.
      */
     @Override
-    public void onCreate(BindViewHolder<T> viewHolder) {
+    public void onCreate(BinderViewHolder<T> viewHolder) {
         adapterBinder.onCreate(viewHolder);
     }
 
@@ -40,7 +40,7 @@ public class BindViewHolder<T> extends RecyclerView.ViewHolder implements Binder
      * Passes Binder#onBind call to adapterBinder.
      */
     @Override
-    public void onBind(BindViewHolder<T> viewHolder, T item) {
+    public void onBind(BinderViewHolder<T> viewHolder, T item) {
         adapterBinder.onBind(viewHolder, item);
     }
 
