@@ -34,48 +34,6 @@ dokka {
     outputDirectory = "$buildDir/javadoc"
 }
 
-//
-//def getVersionName = { ->
-//    return "0.1"
-//}
-//
-//def getArtificatId = { ->
-//    return "listbinders"
-//}
-//
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            groupId 'com.liusbl.libraries'
-//            version getVersionName()
-//            artifactId getArtificatId()
-//            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
-//        }
-//    }
-//}
-//
-//// Bintray config
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//    publications = ['maven']
-//    pkg {
-//        repo = "list-binders"
-//        name = "com.liusbl.libraries:listbinders"
-//        desc = "A RecyclerView wrapper providing an easy solution for complicated lists"
-//        licenses = ['Apache-2.0']
-//        vcsUrl = "https://github.com/liusbl/List-Binders"
-//        version {
-//            name = getVersionName()
-//            vcsTag = getVersionName()
-//            released = new Date()
-//        }
-//    }
-//}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -89,10 +47,7 @@ dependencies {
 
 apply from: "upload-bintray.gradle"
 apply from: "upload-maven.gradle"
+
 repositories {
     mavenCentral()
 }
-
-
-//apply from: "upload-jcenter.gradle"
-//apply from: "upload-maven.gradle"
