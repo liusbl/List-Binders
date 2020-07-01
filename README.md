@@ -8,6 +8,8 @@ Use either SingleViewTypeAdapter to create simple lists, or MultiViewTypeAdapter
 
 - Provide overridable DefaultItemCallback for each item
 
+- Not force extending ListItem for SingleViewTypeAdapter
+
 - Validate that all types of enums were provided.
 
 - Consider all the validation options.

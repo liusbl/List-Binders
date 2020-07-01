@@ -1,9 +1,11 @@
 package com.liusbl.listbinderssample.multi;
 
-import com.liusbl.listbinders.SubListItem;
+import com.liusbl.listbinders.ListItem;
 
-class PersonSubListItem extends SubListItem {
-    public PersonSubListItem(Enum viewType, int stableId) {
-        super(viewType, stableId);
+import org.jetbrains.annotations.Nullable;
+
+class PersonSubListItem extends ListItem {
+    public PersonSubListItem(@Nullable String id) {
+        super(id);
     }
 }
