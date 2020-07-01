@@ -2,13 +2,17 @@ package com.liusbl.listbinderssample.single;
 
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.DiffUtil;
+
 import com.liusbl.listbinders.BinderViewHolder;
 import com.liusbl.listbinders.SingleViewTypeAdapter;
 import com.liusbl.listbinderssample.R;
 
+import org.jetbrains.annotations.NotNull;
+
 public class PersonAdapter extends SingleViewTypeAdapter<Person> {
-    protected PersonAdapter(int itemLayout) {
-        super(itemLayout);
+    protected PersonAdapter(int itemLayout, @NotNull DiffUtil.ItemCallback<Person> diffCallback) {
+        super(itemLayout, diffCallback);
     }
 
     @Override

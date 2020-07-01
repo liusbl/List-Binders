@@ -2,28 +2,26 @@ package com.liusbl.listbinders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
 /**
- * Provides simplified way to implement list with multiple view types
+ * Provides simplified way to implement list with a single view type
  */
-abstract class MultiViewTypeAdapter<T : ListItem>(
-    private val binderList: List<LayoutBinder<*>>,
+abstract class SingleViewTypeAdapter<T : ListItem> protected constructor(
+    @field:LayoutRes private val itemLayout: Int,
     diffCallback: DiffUtil.ItemCallback<T> = DefaultDiffUtilItemCallback()
-) : ListAdapter<T, BinderViewHolder<T>>(diffCallback) {
+) : ListAdapter<T, BinderViewHolder<T>>(diffCallback), ItemBinder<T> {
     init {
         @Suppress("LeakingThis") // The argument comes via the constructor and this is not a usually overridden function
         setHasStableIds(true)
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BinderViewHolder<T> {
-        val binder = binderList.firstOrNull { it.viewType.ordinal == viewType }
-            ?: throw BinderNotFoundException(viewType, binderList)
         val inflater = LayoutInflater.from(parent.context)
-        val itemView = inflater.inflate(binder.itemLayout, parent, false)
-        val viewHolder = BinderViewHolder(binder as LayoutBinder<T>, itemView)
+        val itemView = inflater.inflate(itemLayout, parent, false)
+        val viewHolder = BinderViewHolder(this, itemView)
         viewHolder.onCreate(viewHolder)
         return viewHolder
     }
@@ -35,16 +33,7 @@ abstract class MultiViewTypeAdapter<T : ListItem>(
         viewHolder.onBind(viewHolder, currentList[position])
     }
 
-    /**
-     * When using multiple viewTypes, getItemViewType must be implemented.
-     * Here we provide the Enum value.
-     */
-    override fun getItemViewType(position: Int) = currentList[position]!!.getViewType().ordinal
-
-    /**
-     * Providing stableId values allows some viewHolder optimizations
-     */
-    override fun getItemId(position: Int) = currentList[position]!!.getViewType().ordinal.toLong()
+    override fun getItemId(position: Int) = currentList[position]!!.stableId
 
     /**
      * This should be used instead of directly calling ListAdapter#submitList
