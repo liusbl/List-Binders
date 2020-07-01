@@ -1,8 +1,6 @@
 package com.liusbl.listbinderssample
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.liusbl.listbinderssample.multi.MultiActivity
 import com.liusbl.listbinderssample.single.SingleActivity
@@ -16,8 +14,8 @@ class MainActivity : AppCompatActivity() {
             val intent = SingleActivity.createIntent(this@MainActivity)
             startActivity(intent)
         }
-        findViewById<View>(R.id.multiViewTypeExampleButton).setOnClickListener {
-            val intent = Intent(this@MainActivity, MultiActivity::class.java)
+        multiViewTypeExampleButton.setOnClickListener {
+            val intent = MultiActivity.createIntent(this@MainActivity)
             startActivity(intent)
         }
     }

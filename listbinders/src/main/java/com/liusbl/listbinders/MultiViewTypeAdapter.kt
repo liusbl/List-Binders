@@ -39,12 +39,12 @@ abstract class MultiViewTypeAdapter<T : ListItem>(
      * When using multiple viewTypes, getItemViewType must be implemented.
      * Here we provide the Enum value.
      */
-    override fun getItemViewType(position: Int) = currentList[position]!!.getViewType().ordinal
+    override fun getItemViewType(position: Int) = currentList[position]!!.viewType.ordinal
 
     /**
      * Providing stableId values allows some viewHolder optimizations
      */
-    override fun getItemId(position: Int) = currentList[position]!!.getViewType().ordinal.toLong()
+    override fun getItemId(position: Int) = currentList[position]!!.viewType.ordinal.toLong()
 
     /**
      * This should be used instead of directly calling ListAdapter#submitList

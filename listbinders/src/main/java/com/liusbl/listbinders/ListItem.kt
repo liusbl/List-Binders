@@ -3,18 +3,20 @@ package com.liusbl.listbinders
 /**
  * All single view type list items must extend this class to provide stable ids.
  *
- * @param stableId unique item identifier
+ * @param id unique item identifier
+ * @param viewType Enum that is associated with the list item view type
  */
-open class ListItem(private val id: String?) {
+open class ListItem(
+    private val id: String?,
+    val viewType: Enum<*> = DefaultViewType.EMPTY
+) {
     private var adjustedId: String? = null
     val stableId
         get() = (adjustedId ?: id).hashCode().toLong() // Created to prevent public `id` mutability
 
-    open fun getViewType(): Enum<*> = DefaultViewType.EMPTY
-
     fun adjustId(index: Int): ListItem {
         if (adjustedId == null) {
-            val viewType = getViewType().name
+            val viewType = viewType.name
 
             adjustedId = if (id == null) {
                 createIdFromIndex(viewType, index)

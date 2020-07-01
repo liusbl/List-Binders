@@ -13,6 +13,7 @@ Use either SingleViewTypeAdapter to create simple lists, or MultiViewTypeAdapter
 - Validate that all types of enums were provided.
 
 - Consider all the validation options.
+    Consider ways that a user could fail the setup appropriately
 
 - Find better solution then forcing enum usage.
 
