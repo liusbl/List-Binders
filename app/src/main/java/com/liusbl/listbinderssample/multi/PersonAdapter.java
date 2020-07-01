@@ -12,6 +12,6 @@ public class PersonAdapter extends MultiViewTypeAdapter<PersonSubListItem> {
     );
 
     protected PersonAdapter() {
-        super(a);
+        super(a, null);
     }
 }

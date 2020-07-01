@@ -4,7 +4,7 @@ class HeaderListItem extends PersonSubListItem {
     private final String title;
 
     public HeaderListItem(String title) {
-        super(PersonListType.HEADER, 0);
+        super("PersonListType.HEADER, 0");
         this.title = title;
     }
 
