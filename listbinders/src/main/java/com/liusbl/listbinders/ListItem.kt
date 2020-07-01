@@ -12,8 +12,6 @@ open class ListItem(private val id: String?) {
 
     open fun getViewType(): Enum<*> = DefaultViewType.EMPTY
 
-    fun isSameItem(item: ListItem): Boolean = this.stableId == item.stableId
-
     fun adjustId(index: Int): ListItem {
         if (adjustedId == null) {
             val viewType = getViewType().name
