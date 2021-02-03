@@ -3,15 +3,17 @@ package com.liusbl.listbinderssample.multi
 import com.liusbl.listbinders.BinderViewHolder
 import com.liusbl.listbinders.LayoutBinder
 import com.liusbl.listbinderssample.R
-import kotlinx.android.synthetic.main.activity_list_final_person_item.*
+import com.liusbl.listbinderssample.multi.PersonListItem.ListType
+import com.liusbl.listbinderssample.multi.PersonListItem.Person
+import kotlinx.android.synthetic.main.item_multi_person.*
 
-class PersonBinder : LayoutBinder<PersonListItem.Person>(
-    R.layout.activity_list_final_person_item,
-    PersonListItem.ListType.PERSON
+class PersonBinder : LayoutBinder<Person>(
+    R.layout.item_multi_person,
+    ListType.PERSON
 ) {
     override fun onBind(
-        viewHolder: BinderViewHolder<PersonListItem.Person>,
-        item: PersonListItem.Person
+        viewHolder: BinderViewHolder<Person>,
+        item: Person
     ) {
         viewHolder.nameTextView.alpha = 0f
         viewHolder.nameTextView.animate()

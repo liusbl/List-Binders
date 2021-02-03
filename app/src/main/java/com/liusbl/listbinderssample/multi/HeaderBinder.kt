@@ -3,15 +3,17 @@ package com.liusbl.listbinderssample.multi
 import com.liusbl.listbinders.BinderViewHolder
 import com.liusbl.listbinders.LayoutBinder
 import com.liusbl.listbinderssample.R
-import kotlinx.android.synthetic.main.activity_list_final_header_item.*
+import com.liusbl.listbinderssample.multi.PersonListItem.Header
+import com.liusbl.listbinderssample.multi.PersonListItem.ListType
+import kotlinx.android.synthetic.main.item_multi_header.*
 
-class HeaderBinder : LayoutBinder<PersonListItem.Header>(
-    R.layout.activity_list_final_header_item,
-    PersonListItem.ListType.HEADER
+class HeaderBinder : LayoutBinder<Header>(
+    R.layout.item_multi_header,
+    ListType.HEADER
 ) {
     override fun onBind(
-        viewHolder: BinderViewHolder<PersonListItem.Header>,
-        item: PersonListItem.Header
+        viewHolder: BinderViewHolder<Header>,
+        item: Header
     ) {
         viewHolder.headerTextView.text = item.title
     }
