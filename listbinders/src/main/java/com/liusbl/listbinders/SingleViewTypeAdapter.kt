@@ -21,16 +21,16 @@ abstract class SingleViewTypeAdapter<T : ListItem> protected constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BinderViewHolder<T> {
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(itemLayout, parent, false)
-        val viewHolder = BinderViewHolder(this, itemView)
-        viewHolder.onCreate(viewHolder)
-        return viewHolder
+        return BinderViewHolder(this, itemView)
     }
 
     override fun onBindViewHolder(
         viewHolder: BinderViewHolder<T>,
         position: Int
     ) {
-        viewHolder.onBind(viewHolder, currentList[position])
+        val item = currentList[position]
+        viewHolder.onCreate(item)
+        viewHolder.onBind(item)
     }
 
     override fun getItemId(position: Int) = currentList[position]!!.stableId

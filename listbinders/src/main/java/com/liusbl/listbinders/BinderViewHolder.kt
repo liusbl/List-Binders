@@ -13,23 +13,35 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 class BinderViewHolder<T : ListItem>(
     private val adapterBinder: ItemBinder<T>,
     itemView: View
-) : ViewHolder(itemView), ItemBinder<T> {
+) : ViewHolder(itemView) {
+    private var isCreated = false
+        get() {
+            val previous = field
+            isCreated = true
+            return previous
+        }
+
     /**
      * The current item bound to the viewHolder.
      */
     lateinit var item: T
+        private set
 
     /**
      * Passes Binder#onCreate call to adapterBinder.
      */
-    override fun onCreate(viewHolder: BinderViewHolder<T>) {
-        adapterBinder.onCreate(viewHolder)
+    fun onCreate(item: T) {
+        if (!isCreated) {
+            this.item = item
+            adapterBinder.onCreate(this)
+        }
     }
 
     /**
      * Passes Binder#onBind call to adapterBinder.
      */
-    override fun onBind(viewHolder: BinderViewHolder<T>, item: T) {
-        adapterBinder.onBind(viewHolder, item)
+    fun onBind(item: T) {
+        this.item = item
+        adapterBinder.onBind(this, item)
     }
 }

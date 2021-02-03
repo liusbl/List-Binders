@@ -23,28 +23,28 @@ abstract class MultiViewTypeAdapter<T : ListItem>(
             ?: throw BinderNotFoundException(viewType, binderList)
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(binder.itemLayout, parent, false)
-        val viewHolder = BinderViewHolder(binder as LayoutBinder<T>, itemView)
-        viewHolder.onCreate(viewHolder)
-        return viewHolder
+        return BinderViewHolder(binder as LayoutBinder<T>, itemView)
     }
 
     override fun onBindViewHolder(
         viewHolder: BinderViewHolder<T>,
         position: Int
     ) {
-        viewHolder.onBind(viewHolder, currentList[position])
+        val item = currentList[position]
+        viewHolder.onCreate(item)
+        viewHolder.onBind(item)
     }
 
     /**
      * When using multiple viewTypes, getItemViewType must be implemented.
      * Here we provide the Enum value.
      */
-    override fun getItemViewType(position: Int) = currentList[position]!!.viewType.ordinal
+    override fun getItemViewType(position: Int) = currentList[position].viewType.ordinal
 
     /**
      * Providing stableId values allows some viewHolder optimizations
      */
-    override fun getItemId(position: Int) = currentList[position]!!.viewType.ordinal.toLong()
+    override fun getItemId(position: Int) = currentList[position].viewType.ordinal.toLong()
 
     /**
      * This should be used instead of directly calling ListAdapter#submitList
