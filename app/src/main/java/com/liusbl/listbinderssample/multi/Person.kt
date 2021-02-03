@@ -2,10 +2,7 @@ package com.liusbl.listbinderssample.multi
 
 import com.liusbl.listbinders.ListItem
 
-sealed class PersonListItem(
-    id: String?,
-    type: ListType
-) : ListItem(id, type) {
+sealed class PersonListItem(id: String?, type: ListType) : ListItem(id, type) {
     data class Person(
         val id: String,
         val name: String
