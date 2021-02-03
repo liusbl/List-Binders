@@ -1,19 +1,20 @@
 package com.liusbl.listbinders
 
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.extensions.LayoutContainer
 
 /**
  * Provides a proxy to RecyclerView.ViewHolder by implementing Binder.
  *
  * @param <T> the type of item being bound.
- * @param adapterBinder the adapter binder.
- * @param itemView      the item view.
+ * @param containerView      the item view.
+ * @param binder the adapter binder.
  */
 class BinderViewHolder<T : ListItem>(
-    private val adapterBinder: ItemBinder<T>,
-    itemView: View
-) : ViewHolder(itemView) {
+    override val containerView: View,
+    private val binder: ItemBinder<T>
+) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     private var isCreated = false
         get() {
             val previous = field
@@ -33,15 +34,15 @@ class BinderViewHolder<T : ListItem>(
     fun onCreate(item: T) {
         if (!isCreated) {
             this.item = item
-            adapterBinder.onCreate(this)
+            binder.onCreate(this)
         }
     }
 
     /**
-     * Passes Binder#onBind call to adapterBinder.
+     * Passes Binder#onBind call to binder.
      */
     fun onBind(item: T) {
         this.item = item
-        adapterBinder.onBind(this, item)
+        binder.onBind(this, item)
     }
 }

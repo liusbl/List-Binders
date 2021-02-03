@@ -23,7 +23,7 @@ abstract class MultiViewTypeAdapter<T : ListItem>(
             ?: throw BinderNotFoundException(viewType, binderList)
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(binder.itemLayout, parent, false)
-        return BinderViewHolder(binder as LayoutBinder<T>, itemView)
+        return BinderViewHolder(itemView, binder as LayoutBinder<T>)
     }
 
     override fun onBindViewHolder(

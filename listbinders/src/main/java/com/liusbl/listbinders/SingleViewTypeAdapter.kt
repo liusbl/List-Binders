@@ -21,7 +21,7 @@ abstract class SingleViewTypeAdapter<T : ListItem> protected constructor(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BinderViewHolder<T> {
         val inflater = LayoutInflater.from(parent.context)
         val itemView = inflater.inflate(itemLayout, parent, false)
-        return BinderViewHolder(this, itemView)
+        return BinderViewHolder(itemView, this)
     }
 
     override fun onBindViewHolder(
